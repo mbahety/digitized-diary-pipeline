@@ -35,7 +35,7 @@ Each pipeline can run on its own, or all three can run in sequence in a single c
 Installation:
 Clone the repository and install dependencies:
 ```bash
-git clone https://github.com/yourprofile/digitized-diary-pipeline.git
+git clone https://github.com/mbahety/digitized-diary-pipeline.git
 cd digitized-diary-pipeline
 pip install pdf2image pillow google-genai
 ```
@@ -71,13 +71,13 @@ The pipeline expects (and will create automatically on first run) this folder la
 
 ### 2. Scanning your journal pages
 
-Any scanning app that outputs PDF or JPEG works. The author used [TurboScan](https://www.turboscan.app/) on iOS, but any scanner app, or even a flatbed scanner, producing standard PDF or image files is compatible.
+Any scanning app that outputs PDF or JPEG works. I used [TurboScan](https://www.turboscan.app/) on iOS, but any scanner app, or even a flatbed scanner, producing standard PDF or image files (.jpg) is compatible.
 
 Place scanned PDFs in `inbox/pdf_scans/`, or individual page images directly in `inbox/journal_images/`.
 
 ### 3. Pricing configuration
 
-The script tracks token usage and estimated API cost per run. It reads pricing rates from a `model_pricing.json` file in the working directory (not included in this repo, since pricing changes over time). Copy the example and fill in current rates from [Google's Gemini pricing page](https://ai.google.dev/gemini-api/docs/pricing):
+I am price sensitive when it comes to token costs. The script tracks token usage and estimated API cost per run. It reads pricing rates from a `model_pricing.json` file in the working directory (not included in this repo, since pricing changes over time). Copy the example and fill in current rates from [Google's Gemini pricing page](https://ai.google.dev/gemini-api/docs/pricing):
 
 ```bash
 cp model_pricing.json.example model_pricing.json
@@ -139,19 +139,15 @@ The final compiled volume stacks every entry chronologically, separated by horiz
 
 ## Notes on cost
 
-This pipeline calls the Gemini API once per journal image bundle and once per voice memo transcript. Costs scale with the number of pages and recordings you process, and with image resolution for Pipeline A. The script tracks and logs token usage and estimated cost per call and per run, but exact pricing depends on your `model_pricing.json` and current Gemini rates, which change over time. Check Google's current pricing before processing a large backlog.
+This pipeline calls the Gemini API once per journal image bundle and once per voice memo transcript. Costs scale with the number of pages and recordings you process, and with image resolution for Pipeline A. The script tracks and logs token usage and estimated cost per call and per run, but exact pricing depends on your `model_pricing.json` and current Gemini rates, which change over time. Check Google's current pricing before processing a large backlog. I also recommend doing trial run with a small batch first. 
 
----
-
-## Troubleshooting
-
-See [TROUBLESHOOTING.md](TROUBLESHOOTING.md). This is a living document, expect it to grow as issues are encountered.
+Personally, I spent about $4 in Gemini 2.5 Flash costs across development, debugging, and the final run that produced a 330 page master diary from scanned journal pages and voice memo transcripts spanning over 10 years. I don't journal daily, so the actual page count was modest, your costs will scale up if you have a denser backlog.
 
 ---
 
 ## Privacy & Personal Data
 
-This pipeline processes deeply personal content: journal entries and voice memo transcripts. None of your actual journal content, scanned images, voice memo data, or compiled volumes should ever be committed to a public repo.
+This pipeline processes personal content: journal entries and voice memo transcripts. None of your actual journal content, scanned images, voice memo data, or compiled volumes should be committed to a public repo.
 
 The `.gitignore` in this repo excludes `inbox/`, `entries/`, `volumes/`, `processed/`, and your `model_pricing.json`. Only the script, `model_pricing.json.example`, and documentation belong in version control.
 
