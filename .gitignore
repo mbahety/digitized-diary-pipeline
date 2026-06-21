@@ -1,0 +1,20 @@
+# Personal data and content — never commit these
+inbox/
+entries/
+volumes/
+processed/
+model_pricing.json
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.env
+venv/
+.venv/
+
+# macOS
+.DS_Store

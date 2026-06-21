@@ -1,0 +1,12 @@
+{
+  "gemini-2.5-flash": {
+    "input_cost_per_million": 0.30,
+    "output_cost_per_million": 2.50,
+    "cached_cost_per_million": 0.075
+  },
+  "gemini-2.5-pro": {
+    "input_cost_per_million": 1.25,
+    "output_cost_per_million": 10.00,
+    "cached_cost_per_million": 0.31
+  }
+}
